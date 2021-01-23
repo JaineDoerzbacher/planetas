@@ -9,5 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 interface PlanetRepository : JpaRepository<Planet, Long> {
 
+    @Query("select p from Planet p where p.nome = :nome ")
+    fun findByNome(@Param("nome") nome: String) : List<Planet>
 
 }

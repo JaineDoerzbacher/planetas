@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  bd:
+    image: postgres
+    container_name: features-db
+    environment:
+      POSTGRES_USER: jaine
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: features-db
+    ports:
+      - 5432:5432
+    volumes:
+      - database-data:/var/lib/postgresql/data
+  app:
+    build:
+      context: build/libs
+      dockerfile: ../../Dockerfile
+      network: host
+    ports:
+      - 8080:8081
+    depends_on:
+      - bd
+volumes:
+  database-data:
