@@ -20,17 +20,18 @@ class PlanetController {
 
         val registrarPlaneta = this.planetService.create(planetDTO)
 
-        return ResponseEntity(create(planetDTO), HttpStatus.CREATED)
+        return ResponseEntity(registrarPlaneta, HttpStatus.CREATED)
     }
 
     @GetMapping("/{id}")
     fun getById(@PathVariable id: Long): ResponseEntity<Any> {
-        var status = HttpStatus.NOT_FOUND
-        if (this.planetService.getById(id) != null) {
-            status = HttpStatus.ACCEPTED
-            this.planetService.delete(id)
-        }
-        return ResponseEntity(Unit, status)
+        var planeta = this.planetService.getById(id)
+
+        if (planeta != null)
+            return ResponseEntity(planeta, HttpStatus.OK)
+        else return ResponseEntity(
+            HttpStatus.NOT_FOUND
+        )
     }
 
 

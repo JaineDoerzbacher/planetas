@@ -8,7 +8,7 @@ data class Planet(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long?,
+    val id: Long? = null,
     val nome: String,
     val solo: String,
     val descricao: String

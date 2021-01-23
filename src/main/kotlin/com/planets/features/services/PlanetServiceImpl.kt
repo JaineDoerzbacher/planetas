@@ -15,13 +15,13 @@ class PlanetServiceImpl : PlanetService {
 
         var planeta = Planet(null, planetDTO.nome, planetDTO.solo, planetDTO.descricao)
         planeta = planetRepository.save(planeta)
-        return PlanetDTO(null, planeta.nome, planeta.solo, planeta.descricao)
+        return PlanetDTO( planeta.nome, planeta.solo, planeta.descricao)
     }
 
     override fun getById(id: Long): PlanetDTO? {
 
         val planeta = planetRepository.findById(id).orElseGet(null)
-        return PlanetDTO(null, planeta.nome, planeta.solo, planeta.descricao)
+        return PlanetDTO( planeta.nome, planeta.solo, planeta.descricao)
     }
 
     override fun delete(id: Long) {
@@ -37,7 +37,7 @@ class PlanetServiceImpl : PlanetService {
         for (planeta in planetas) {
 
             val planetDTO =
-                PlanetDTO(null, planeta.nome, planeta.solo, planeta.descricao)
+                PlanetDTO( planeta.nome, planeta.solo, planeta.descricao)
             lista.add(planetDTO)
         }
 
